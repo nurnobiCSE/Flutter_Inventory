@@ -1,6 +1,7 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:chat/home_screen.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -17,251 +18,179 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement build
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: LoginPage(),
         theme: ThemeData(scaffoldBackgroundColor:  const Color(0xFFEFEFEF)),
     );
   }
 }
-
-class HomePage extends StatefulWidget {
-
+class LoginPage extends StatefulWidget{
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<LoginPage> createState()=> _LoginPageState();
 }
-
-class _HomePageState extends State<HomePage> {
-  bool _isShown = true;
+class _LoginPageState extends State<LoginPage>{
   @override
   Widget build(BuildContext context) {
-
     // TODO: implement build
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.deepOrangeAccent,
-          centerTitle: true,
-          title: Text("Inventory Management"),
-        ),
 
-        body: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Column(
-
-            crossAxisAlignment: CrossAxisAlignment.start,
+        body: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              colors: <Color>[
+                Color(0xff1f005c),
+                Color(0xff5b0060),
+                Color(0xff870160),
+                Color(0xffac255e),
+                Color(0xffca485c),
+                Color(0xffe16b5c),
+                Color(0xfff39060),
+                Color(0xffffb56b),
+              ]
+            )
+          ),
+          child: ListView(
             children: [
-              Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      "assets/logo.png",
-                      height: 300,
-                      width: 300,
-                    )
-                  ],
-                ),
-                height: MediaQuery.of(context).size.height / 4.5,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Colors.amber,
-                  // border: Border.all(width: 1.0),
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(60.0),
-                        bottomRight: Radius.circular(60.0))),
-              ),
-              // SizedBox(height: 5),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius:BorderRadius.circular(15),
-                      color: Colors.white
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          RawMaterialButton(
-                            onPressed: (){},
-                            elevation: 2,
-                            fillColor: Colors.deepPurple,
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.white,
-                              size: 40.0,
-                            ),
-                            padding: EdgeInsets.all(15.0),
-                            shape: CircleBorder(),
-                          ),
-                          SizedBox(height: 5.0,),
-                          Text("Add Product")
-                        ],
-                      )
-                    ),
-                    height: MediaQuery.of(context).size.height/5,
-                    width: MediaQuery.of(context).size.width /2.7,
-                    // color: Colors.white,
-                    margin:EdgeInsets.only(
-                      top: 7.0,
-                    ),
+                  Text("\nLogin Page\n",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold
                   ),
-                  SizedBox(width: 10.0,),
+                  ),
                   Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RawMaterialButton(
-                              onPressed: (){},
-                              elevation: 2,
-                              fillColor: Colors.lime,
-                              child: Icon(
-                                Icons.delete,
-                                color: Colors.white,
-                                size: 40.0,
-                              ),
-                              padding: EdgeInsets.all(15.0),
-                              shape: CircleBorder(),
-                            ),
-                            SizedBox(height: 5.0,),
-                            Text("Delete Product")
-                          ],
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(50),
+                            topRight: Radius.circular(50)
                         )
                     ),
-                    height: MediaQuery.of(context).size.height/5,
-                    width: MediaQuery.of(context).size.width /2.7,
-                    margin:EdgeInsets.only(
-                      top: 7.0,
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white,
-                    ),
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          RawMaterialButton(
-                            onPressed: (){},
-                            elevation: 2,
-                            fillColor: Colors.pink,
-                            child: Icon(
-                              Icons.view_quilt_outlined,
-                              color: Colors.white,
-                              size: 40.0,
+                    child: Column(
+                      children: [
+                        Container(
+                          height: MediaQuery.of(context).size.height /8,
+                          width: MediaQuery.of(context).size.width /1.5,
+                          // color: Colors.pink,
+                          child: TextField(
+                            decoration: InputDecoration(
+                                labelText: 'Username',
+                                hintText: 'my username'
                             ),
-                            padding: EdgeInsets.all(15.0),
-                            shape: CircleBorder(),
                           ),
-                          SizedBox(height: 5.0,),
-                          Text("View Product")
-                        ],
-                      )
-                    ),
-                    height: MediaQuery.of(context).size.height/5,
-                    width: MediaQuery.of(context).size.width /2.7,
-                    margin:EdgeInsets.only(
-                      top: 7.0,
-                    ),
-                  ),
-                  SizedBox(width: 10.0,),
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color:Colors.white
-                    ),
-                    child: Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            RawMaterialButton(
-                              onPressed: (){},
-                              elevation: 2,
-                              fillColor: Colors.tealAccent,
-                              child: Icon(
-                                Icons.attach_money_sharp,
-                                color: Colors.white,
-                                size: 40.0,
-                              ),
-                              padding: EdgeInsets.all(15.0),
-                              shape: CircleBorder(),
+                        ),
+                        SizedBox(height: 10,),
+                        Container(
+                          height: MediaQuery.of(context).size.height /8,
+                          width: MediaQuery.of(context).size.width /1.5,
+                          // color: Colors.pink,
+                          child: TextField(
+                            obscureText: true,
+                            decoration: InputDecoration(
+                                labelText: 'Password',
+                                hintText: ''
                             ),
-                            SizedBox(height: 5.0,),
-                            Text("View Inventory")
-                          ],
-                        )
-                    ),
-                    height: MediaQuery.of(context).size.height/5,
-                    width: MediaQuery.of(context).size.width /2.7,
+                          ),
+                        ),
+                        SizedBox(height: 20,),
+                        GestureDetector(
+                          onTap: (){
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => HomePage())
+                            );
 
-                    margin:EdgeInsets.only(
-                      top: 7.0,
-                    ),
-                  )
-                ],
-              ),
-              SizedBox(height:30.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height /10,
-                    width: MediaQuery.of(context).size.width / 3,
-                    // color:Colors.red,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0)
-                      ),
-                      color: Colors.deepOrange,
-                      onPressed: (){
-                        showDialog(context: context, builder: (context){
-                          return AlertDialog(
-                            backgroundColor: Colors.white,
-                            title: Text("Confirmation",style: TextStyle(color: Colors.blueGrey,fontSize: 24,fontWeight: FontWeight.bold),),
-                            content: Text("Are You Exit To App ?",style: TextStyle(color: Colors.pink),),
-                            actions: [
-                              TextButton(onPressed: (){
-                                setState((){
-                                  _isShown = false;
-                                });
-                                exit(0);
-                              }
-                                  , child: Text("YES",style: TextStyle(color: Colors.pink,fontWeight: FontWeight.bold),)
+                          },
+                          child: Container(
+                            height: MediaQuery.of(context).size.height /9,
+                            width: MediaQuery.of(context).size.width /2,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Colors.pink[700],
+                            ),
+                            child: Center(
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 24
+                                ),
                               ),
-                              TextButton(
-                                  onPressed:(){
-                                    Navigator.of(context).pop();
+                            ),
+                          ),
+                        ),
+                        SizedBox(height: 50,),
+                        Padding(
+                          padding: EdgeInsets.all(15),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: (){
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(builder: (context) => SignUp_Page())
+                                    // );
                                   },
-                                  child: Text("NO"))
+                                  child: Container(
+                                    child:Center(
+                                      child: Text(
+                                        "Sign Up",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 24
+                                        ),
+                                      ),
+                                    ),
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      color: Colors.deepOrange,
+                                      borderRadius: BorderRadius.circular(50)
+                                    ),
+                              ),
+                                )
+                              ),
+                              SizedBox(width: 10,),
+                              Expanded(
+                                child: GestureDetector(
+                                  onTap: (){
+                                    exit(0);
+                                  },
+                                  child: Container(
+                                    child: Center(
+                                      child: Text("Exit",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 24
+                                      ),
+                                      ),
+                                    ),
+                                    height: 60,
+                                    decoration: BoxDecoration(
+                                      color: Colors.cyan,
+                                      borderRadius: BorderRadius.circular(50)
+                                    ),
+                              ),
+                                ))
                             ],
-                          );
-                        });
-                      },
-
-                      child: Icon(Icons.exit_to_app,color: Colors.white,size: 45.0,),
+                          ),
+                        )
+                      ],
                     ),
-                  )
+                  ),
                 ],
               ),
-
             ],
           ),
         ),
-
       ),
     );
-
   }
 }
+
+
