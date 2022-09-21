@@ -1,5 +1,7 @@
+import 'package:chat/View_product.dart';
 import 'package:chat/add_product.dart';
 import 'package:chat/main.dart';
+import 'package:chat/return_product.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 class HomePage extends StatefulWidget {
@@ -102,7 +104,11 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RawMaterialButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => ReturnPage())
+                                );
+                              },
                               elevation: 2,
                               fillColor: Colors.lime,
                               child: Icon(
@@ -139,7 +145,11 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RawMaterialButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => ViewPage())
+                                );
+                              },
                               elevation: 2,
                               fillColor: Colors.pink,
                               child: Icon(
