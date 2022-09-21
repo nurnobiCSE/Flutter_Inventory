@@ -1,3 +1,4 @@
+import 'package:chat/add_product.dart';
 import 'package:chat/main.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
@@ -62,7 +63,12 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RawMaterialButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => AddPage())
+                                );
+                              },
                               elevation: 2,
                               fillColor: Colors.deepPurple,
                               child: Icon(
@@ -100,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                               elevation: 2,
                               fillColor: Colors.lime,
                               child: Icon(
-                                Icons.delete,
+                                Icons.backpack_sharp,
                                 color: Colors.white,
                                 size: 40.0,
                               ),
@@ -108,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                               shape: CircleBorder(),
                             ),
                             SizedBox(height: 5.0,),
-                            Text("Delete Product")
+                            Text("Return Product")
                           ],
                         )
                     ),
