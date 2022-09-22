@@ -2,13 +2,13 @@ import 'package:chat/home_screen.dart';
 import 'package:chat/main.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-class ReturnPage extends StatefulWidget {
+class SalePage extends StatefulWidget {
 
   @override
-  State<ReturnPage> createState() => _ReturnPageState();
+  State<SalePage> createState() => _SalePageState();
 }
 
-class _ReturnPageState extends State<ReturnPage> {
+class _SalePageState extends State<SalePage> {
   @override
   Widget build(BuildContext context) {
 
@@ -16,32 +16,21 @@ class _ReturnPageState extends State<ReturnPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.lime,
-          title: Text("Return Product"),
+          backgroundColor: Colors.teal,
+          title: Text("Sales Product"),
           centerTitle: true,
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(top: 25.0,right: 20.0,bottom: 25.0,left: 10.0),
           child: Column(
             children: [
-              Center(
-                child: Padding(
-                  padding: EdgeInsets.only(left: 40.0,bottom: 10.0,right: 20.0),
-                  child: Container(
-                    height: 120,
-                    width: 120,
-                    // color: Colors.amberAccent,
-                    child: Image.asset("assets/images-removebg-preview.png",),
-                  ),
-                )
-              ),
               TextFormField(
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     filled: true,
                     labelText: 'Product Name',
                     hintText: '',
-                    icon: Icon(Icons.production_quantity_limits,color: Colors.lime,)
+                    icon: Icon(Icons.production_quantity_limits,color: Colors.teal,)
                 ),
               ),
               Padding(padding: EdgeInsets.only(bottom: 30.0)),
@@ -51,7 +40,17 @@ class _ReturnPageState extends State<ReturnPage> {
                     filled: true,
                     labelText: 'Product Code',
                     hintText: '',
-                    icon: Icon(Icons.radar_rounded,color: Colors.lime,)
+                    icon: Icon(Icons.radar_rounded,color: Colors.teal,)
+                ),
+              ),
+              Padding(padding: EdgeInsets.only(bottom: 30.0)),
+              TextFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    labelText: 'Product Price',
+                    hintText: '',
+                    icon: Icon(Icons.attach_money_sharp,color: Colors.teal,)
                 ),
               ),
               Padding(padding: EdgeInsets.only(bottom: 30.0)),
@@ -61,7 +60,17 @@ class _ReturnPageState extends State<ReturnPage> {
                     filled: true,
                     labelText: 'Number of quantity',
                     hintText: '',
-                    icon: Icon(Icons.add_box_outlined,color: Colors.lime,)
+                    icon: Icon(Icons.add_box_outlined,color: Colors.teal,)
+                ),
+              ),
+              Padding(padding: EdgeInsets.only(bottom: 30.0)),
+              TextFormField(
+                decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    filled: true,
+                    labelText: 'Total price',
+                    hintText: '',
+                    icon: Icon(Icons.money_rounded,color: Colors.teal,)
                 ),
               ),
               Padding(padding: EdgeInsets.only(bottom: 30.0)),
@@ -77,13 +86,12 @@ class _ReturnPageState extends State<ReturnPage> {
                     child: Container(
                       height: 70,
                       decoration: BoxDecoration(
-                          color: Colors.lime,
+                          color: Colors.teal,
                           borderRadius: BorderRadius.circular(50.0)
                       ),
-
                       child: Center(
                         child: Text(
-                          "Save Return",
+                          "Add Sales",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 24.0,

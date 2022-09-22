@@ -1,5 +1,6 @@
 import 'package:chat/View_product.dart';
 import 'package:chat/add_product.dart';
+import 'package:chat/add_sale.dart';
 import 'package:chat/main.dart';
 import 'package:chat/return_product.dart';
 import 'package:flutter/material.dart';
@@ -182,7 +183,12 @@ class _HomePageState extends State<HomePage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             RawMaterialButton(
-                              onPressed: (){},
+                              onPressed: (){
+                                Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => SalePage())
+                                );
+                              },
+                              splashColor: Colors.blueAccent,
                               elevation: 2,
                               fillColor: Colors.tealAccent,
                               child: Icon(
@@ -194,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                               shape: CircleBorder(),
                             ),
                             SizedBox(height: 5.0,),
-                            Text("View Inventory")
+                            Text("Add Sales")
                           ],
                         )
                     ),

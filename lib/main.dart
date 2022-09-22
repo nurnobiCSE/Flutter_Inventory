@@ -147,7 +147,7 @@ class _LoginPageState extends State<LoginPage>{
                                         ),
                                       ),
                                     ),
-                                    height: 60,
+                                    height: MediaQuery.of(context).size.height / 14,
                                     decoration: BoxDecoration(
                                       color: Colors.deepOrange,
                                       borderRadius: BorderRadius.circular(50)
@@ -170,7 +170,7 @@ class _LoginPageState extends State<LoginPage>{
                                       ),
                                       ),
                                     ),
-                                    height: 60,
+                                    height: MediaQuery.of(context).size.height / 14,
                                     decoration: BoxDecoration(
                                       color: Colors.cyan,
                                       borderRadius: BorderRadius.circular(50)

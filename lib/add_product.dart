@@ -16,7 +16,7 @@ class _AddPageState extends State<AddPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.deepOrange,
+          backgroundColor: Colors.deepPurple,
           title: Text("Add Product"),
           centerTitle: true,
         ),
@@ -30,7 +30,7 @@ class _AddPageState extends State<AddPage> {
                   filled: true,
                   labelText: 'Product Name',
                   hintText: '',
-                  icon: Icon(Icons.production_quantity_limits,color: Colors.deepOrange,)
+                  icon: Icon(Icons.production_quantity_limits,color: Colors.deepPurple,)
                 ),
               ),
               Padding(padding: EdgeInsets.only(bottom: 30.0)),
@@ -40,7 +40,7 @@ class _AddPageState extends State<AddPage> {
                   filled: true,
                   labelText: 'Product Code',
                   hintText: '',
-                  icon: Icon(Icons.radar_rounded,color: Colors.deepOrange,)
+                  icon: Icon(Icons.radar_rounded,color: Colors.deepPurple,)
                 ),
               ),
               Padding(padding: EdgeInsets.only(bottom: 30.0)),
@@ -50,7 +50,7 @@ class _AddPageState extends State<AddPage> {
                   filled: true,
                   labelText: 'Product Price',
                   hintText: '',
-                  icon: Icon(Icons.attach_money_sharp,color: Colors.deepOrange,)
+                  icon: Icon(Icons.attach_money_sharp,color: Colors.deepPurple,)
                 ),
               ),
               Padding(padding: EdgeInsets.only(bottom: 30.0)),
@@ -60,7 +60,7 @@ class _AddPageState extends State<AddPage> {
                   filled: true,
                   labelText: 'Number of quantity',
                   hintText: '',
-                  icon: Icon(Icons.add_box_outlined,color: Colors.deepOrange,)
+                  icon: Icon(Icons.add_box_outlined,color: Colors.deepPurple,)
                 ),
               ),
               Padding(padding: EdgeInsets.only(bottom: 30.0)),
@@ -70,7 +70,7 @@ class _AddPageState extends State<AddPage> {
                   filled: true,
                   labelText: 'Total price',
                   hintText: '',
-                  icon: Icon(Icons.money_rounded,color: Colors.deepOrange,)
+                  icon: Icon(Icons.money_rounded,color: Colors.deepPurple,)
                 ),
               ),
               Padding(padding: EdgeInsets.only(bottom: 30.0)),
@@ -86,7 +86,7 @@ class _AddPageState extends State<AddPage> {
                     child: Container(
                       height: 70,
                       decoration: BoxDecoration(
-                        color: Colors.deepOrange,
+                        color: Colors.deepPurple,
                         borderRadius: BorderRadius.circular(50.0)
                       ),
                       child: Center(
