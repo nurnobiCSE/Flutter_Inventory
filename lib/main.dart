@@ -104,7 +104,6 @@ class _LoginPageState extends State<LoginPage>{
                                 context,
                                 MaterialPageRoute(builder: (context) => HomePage())
                             );
-
                           },
                           child: Container(
                             height: MediaQuery.of(context).size.height /9,
@@ -124,62 +123,16 @@ class _LoginPageState extends State<LoginPage>{
                             ),
                           ),
                         ),
-                        SizedBox(height: 50,),
                         Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: (){
-                                    // Navigator.push(
-                                    //   context,
-                                    //   MaterialPageRoute(builder: (context) => SignUp_Page())
-                                    // );
-                                  },
-                                  child: Container(
-                                    child:Center(
-                                      child: Text(
-                                        "Sign Up",
-                                        style: TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 24
-                                        ),
-                                      ),
-                                    ),
-                                    height: MediaQuery.of(context).size.height / 14,
-                                    decoration: BoxDecoration(
-                                      color: Colors.deepOrange,
-                                      borderRadius: BorderRadius.circular(50)
-                                    ),
-                              ),
-                                )
-                              ),
-                              SizedBox(width: 10,),
-                              Expanded(
-                                child: GestureDetector(
-                                  onTap: (){
-                                    exit(0);
-                                  },
-                                  child: Container(
-                                    child: Center(
-                                      child: Text("Exit",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 24
-                                      ),
-                                      ),
-                                    ),
-                                    height: MediaQuery.of(context).size.height / 14,
-                                    decoration: BoxDecoration(
-                                      color: Colors.cyan,
-                                      borderRadius: BorderRadius.circular(50)
-                                    ),
-                              ),
-                                ))
-                            ],
+                          padding: EdgeInsets.only(bottom: 10.0,top: 5.0),
+                          child: Container(
+                            height: 240,
+                            // color: Colors.blueAccent,
+                            child: Center(
+                              child: Image.asset("assets/home_logo-removebg-preview.png",),
+                            ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
