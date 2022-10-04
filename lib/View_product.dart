@@ -3,26 +3,21 @@ import 'package:chat/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
-class ViewPage extends StatefulWidget {
+import 'package:chat/all_api.dart';
 
+
+class ViewPage extends StatefulWidget {
   @override
   State<ViewPage> createState() => _ViewPageState();
 }
 
 class _ViewPageState extends State<ViewPage> {
-  var click = true;
-  List product = [
-    {"name":"A-product","model":"model-a"},
-    {"name":"B-product","model":"model-b"},
-    {"name":"C-product","model":"model-c"},
-    {"name":"D-product","model":"model-d"},
-    {"name":"E-product","model":"model-e"},
-    {"name":"F-product","model":"model-f"},
-    {"name":"G-product","model":"model-g"},
-    {"name":"H-product","model":"model-h"},
-    {"name":"I-product","model":"model-i"},
-    {"name":"J-product","model":"model-j"},
-  ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    productAddApiCall();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
   var tileTap = false;
@@ -31,11 +26,11 @@ class _ViewPageState extends State<ViewPage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.pink,
-          title: Text("View Product"),
+          title: Text("View Product List"),
           centerTitle: true,
         ),
         body:ListView.builder(
-          itemCount: product.length,
+          itemCount:data_loading? 1:data.length,
           itemBuilder: (BuildContext context, int index){
             return Column(
               children: [
@@ -47,22 +42,25 @@ class _ViewPageState extends State<ViewPage> {
                           topLeft:Radius.circular(50.0),
                           bottomRight: Radius.circular(50.0)
                       )),
-                      tileColor: Colors.pink,
-                      title: Text(product[index]['name'] ,style: TextStyle(color: Colors.white,fontSize: 20),),
-                      subtitle: Text(product[index]['model'],style: TextStyle(color: Colors.white,)),
+                      tileColor:  data_loading ? Colors.black:Colors.pink,
+                      title: Text(data_loading ?"Server Problem":(data !=null?  data[index]['P_name'].toString():"wrong") ,style: TextStyle(color: Colors.white,fontSize: 20),),
+                      subtitle: Text(data_loading ?"Loading..........":(data !=null ?data[index]['P_code'].toString():"wrong"),style: TextStyle(color: Colors.white,)),
                       leading: Icon(Icons.add_shopping_cart_outlined,color: Colors.white),
                       // trailing: Icon(Icons.arrow_forward_ios_outlined,color: Colors.white,),
                       selected: false,
                       selectedTileColor: Colors.amberAccent,
                     ),
                   ),
+
                 ),
               ],
             );
           }
+
         ),
       ),
     );
 
   }
+
 }

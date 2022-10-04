@@ -1,5 +1,5 @@
 import 'package:chat/View_product.dart';
-import 'package:chat/add_product.dart';
+import 'package:chat/user_stuff.dart';
 import 'package:chat/add_sale.dart';
 import 'package:chat/main.dart';
 import 'package:chat/return_product.dart';
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                               elevation: 2,
                               fillColor: Colors.deepPurple,
                               child: Icon(
-                                Icons.add,
+                                Icons.manage_accounts,
                                 color: Colors.white,
                                 size: 40.0,
                               ),
@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                               shape: CircleBorder(),
                             ),
                             SizedBox(height: 5.0,),
-                            Text("Add Product")
+                            Text("View Stuff user")
                           ],
                         )
                     ),
@@ -121,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                               shape: CircleBorder(),
                             ),
                             SizedBox(height: 5.0,),
-                            Text("Return Product")
+                            Text("View Return\n    Product")
                           ],
                         )
                     ),
@@ -190,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                               },
                               splashColor: Colors.blueAccent,
                               elevation: 2,
-                              fillColor: Colors.tealAccent,
+                              fillColor: Colors.teal,
                               child: Icon(
                                 Icons.attach_money_sharp,
                                 color: Colors.white,
