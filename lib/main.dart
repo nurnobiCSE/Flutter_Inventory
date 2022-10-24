@@ -125,10 +125,11 @@ class _LoginPageState extends State<LoginPage>{
                             ),
                           ),
                         ),
+                        TextButton(onPressed: ()=> exit(0), child: Text("ToExit-->")),
                         Padding(
-                          padding: EdgeInsets.only(bottom: 10.0,top: 5.0),
+                          padding: EdgeInsets.only(bottom: 0.0,top: 1.0),
                           child: Container(
-                            height: 240,
+                            height: 200,
                             // color: Colors.blueAccent,
                             child: Center(
                               child: Image.asset("assets/home_logo-removebg-preview.png",),

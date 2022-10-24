@@ -3,9 +3,9 @@ import 'dart:async';
 import 'dart:convert';
 
 
-var url = "http://192.168.0.111:8080/api/productadd/";
-var userurl = "http://192.168.0.111:8080/api/registered_user/";
-var returnurl = "http://192.168.0.111:8080/api/returnproduct/";
+var url = "https://nurnobi.pythonanywhere.com/api/productadd/";
+var userurl = "https://nurnobi.pythonanywhere.com/api/registered_user/";
+var returnurl = "https://nurnobi.pythonanywhere.com/api/returnproduct/";
 var stringResponse;
 var stringuserResponse;
 var returnResponse;

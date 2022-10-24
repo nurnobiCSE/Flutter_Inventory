@@ -18,6 +18,13 @@ class _ViewPageState extends State<ViewPage> {
     productAddApiCall();
     super.initState();
   }
+  Future<Null>refreshPage()async{
+    await Future.delayed(Duration(seconds: 4));
+    setState(() {
+      productAddApiCall();
+    });
+    return null;
+  }
   @override
   Widget build(BuildContext context) {
   var tileTap = false;
@@ -28,35 +35,43 @@ class _ViewPageState extends State<ViewPage> {
           backgroundColor: Colors.pink,
           title: Text("View Product List"),
           centerTitle: true,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(25.0)
+              )
+          ),
         ),
-        body:ListView.builder(
-          itemCount:data_loading? 1:data.length,
-          itemBuilder: (BuildContext context, int index){
-            return Column(
-              children: [
-                Card(
-                  child: Padding(
-                    padding: EdgeInsets.all(10.0),
-                    child: ListTile(
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(
-                          topLeft:Radius.circular(50.0),
-                          bottomRight: Radius.circular(50.0)
-                      )),
-                      tileColor:  data_loading ? Colors.black:Colors.pink,
-                      title: Text(data_loading ?"Server Problem":(data !=null?  data[index]['P_name'].toString():"wrong") ,style: TextStyle(color: Colors.white,fontSize: 20),),
-                      subtitle: Text(data_loading ?"Loading..........":(data !=null ?data[index]['P_code'].toString():"wrong"),style: TextStyle(color: Colors.white,)),
-                      leading: Icon(Icons.add_shopping_cart_outlined,color: Colors.white),
-                      // trailing: Icon(Icons.arrow_forward_ios_outlined,color: Colors.white,),
-                      selected: false,
-                      selectedTileColor: Colors.amberAccent,
+        body:RefreshIndicator(
+          onRefresh: refreshPage,
+          child: ListView.builder(
+            itemCount:data.length,
+            itemBuilder: (BuildContext context, int index){
+              return Column(
+                children: [
+                  Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(10.0),
+                      child: ListTile(
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.only(
+                            topLeft:Radius.circular(50.0),
+                            bottomRight: Radius.circular(50.0)
+                        )),
+                        tileColor:  data_loading ? Colors.black:Colors.pink,
+                        title: Text(data_loading ?"Server Problem":(data !=null?  data[index]['P_name'].toString():"wrong") ,style: TextStyle(color: Colors.white,fontSize: 20),),
+                        subtitle: Text(data_loading ?"Loading..........":(data !=null ?data[index]['P_code'].toString():"wrong"),style: TextStyle(color: Colors.white,)),
+                        leading: Icon(Icons.add_shopping_cart_outlined,color: Colors.white),
+                        // trailing: Icon(Icons.arrow_forward_ios_outlined,color: Colors.white,),
+                        selected: false,
+                        selectedTileColor: Colors.amberAccent,
+                      ),
                     ),
+
                   ),
+                ],
+              );
+            }
 
-                ),
-              ],
-            );
-          }
-
+          ),
         ),
       ),
     );

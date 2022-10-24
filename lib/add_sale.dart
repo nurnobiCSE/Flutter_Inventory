@@ -19,6 +19,11 @@ class _SalePageState extends State<SalePage> {
           backgroundColor: Colors.teal,
           title: Text("Sales Product"),
           centerTitle: true,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(25.0)
+              )
+          ),
         ),
         body: SingleChildScrollView(
           padding: EdgeInsets.only(top: 25.0,right: 20.0,bottom: 25.0,left: 10.0),
