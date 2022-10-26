@@ -67,6 +67,12 @@ class _HomePageState extends State<HomePage> {
                           children: [
                             RawMaterialButton(
                               onPressed: (){
+                                showDialog(
+                                    context: context,
+                                    builder: (context){
+                                  return Center(child: CircularProgressIndicator(),);
+                                },);
+                                Navigator.of(context).pop();
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(builder: (context) => AddPage())
