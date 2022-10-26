@@ -221,11 +221,8 @@ class _HomePageState extends State<HomePage> {
                     height: MediaQuery.of(context).size.height /10,
                     width: MediaQuery.of(context).size.width / 3,
                     // color:Colors.red,
-                    child: RaisedButton(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.0)
-                      ),
-                      color: Colors.deepOrange,
+                    child: TextButton(
+
                       onPressed: (){
                         showDialog(context: context, builder: (context){
                           return AlertDialog(
@@ -254,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                         });
                       },
 
-                      child: Icon(Icons.exit_to_app,color: Colors.white,size: 45.0,),
+                      child: Icon(Icons.exit_to_app_rounded,color: Colors.deepOrange,size: 60.0,),
                     ),
                   )
                 ],
