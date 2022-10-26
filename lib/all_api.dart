@@ -6,12 +6,16 @@ import 'dart:convert';
 var url = "https://nurnobi.pythonanywhere.com/api/productadd/";
 var userurl = "https://nurnobi.pythonanywhere.com/api/registered_user/";
 var returnurl = "https://nurnobi.pythonanywhere.com/api/returnproduct/";
+var loginurl = "https://nurnobi.pythonanywhere.com/api/login/";
+
 var stringResponse;
 var stringuserResponse;
 var returnResponse;
+var loginResponse;
 List data = [];
 List userdata = [];
 List returndata = [];
+List logindata = [];
 var data_loading = false;
 
 Future productAddApiCall()async{
@@ -36,6 +40,18 @@ Future userApiCall()async{
     userdata = toJson;
     print("................,,,,,,,,,,,,,,");
     print(userdata);
+  }
+}
+Future loginApiCall()async{
+  http.Response response;
+  response = await http.get(Uri.parse(loginurl));
+  if(response.statusCode ==200){
+    loginResponse = response.body;
+    var toJson = json.decode(loginResponse);
+    logindata = toJson;
+    print("................,:::::::::::::::::::::::::::,,,,,,,,,,,,,");
+
+    print(logindata);
   }
 }
 

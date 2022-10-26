@@ -9,7 +9,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
-
+import 'package:chat/all_api.dart';
 
 //https://nurnobi.pythonanywhere.com/api/registered_user/
 
@@ -40,7 +40,7 @@ class LoginPage extends StatefulWidget{
 class _LoginPageState extends State<LoginPage>{
   TextEditingController _username = TextEditingController();
   TextEditingController _password = TextEditingController();
-
+  bool isLoading = false;
   void login(username,password) {
     if(username == "admin" && password == "admin"){
       ScaffoldMessenger.of(context).showSnackBar(
@@ -85,6 +85,7 @@ class _LoginPageState extends State<LoginPage>{
     subscription.cancel();
     super.dispose();
   }
+
   //End code for internet checking :
   @override
   Widget build(BuildContext context) {
@@ -111,91 +112,148 @@ class _LoginPageState extends State<LoginPage>{
           ),
           child: ListView(
             children: [
-              Column(
+              Stack(
+                alignment: Alignment.center,
                 children: [
-                  Text("\nLogin Page\n",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 35,
-                    fontWeight: FontWeight.bold
-                  ),
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height /1.3,
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50)
-                        )
+                Column(
+                  children: [
+                    Text("\nLogin Page\n",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold
                     ),
-                    child: Column(
-                      children: [
-                        Container(
-                          height: MediaQuery.of(context).size.height /8,
-                          width: MediaQuery.of(context).size.width /1.5,
-                          // color: Colors.pink,
-                          child: TextField(
-                            controller: _username,
-                            decoration: InputDecoration(
-                                labelText: 'Username',
-                                hintText: 'my username'
+                    ),
+                    Container(
+                      height: MediaQuery.of(context).size.height /1.3,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(50),
+                              topRight: Radius.circular(50)
+                          )
+                      ),
+                      child: Column(
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height /8,
+                            width: MediaQuery.of(context).size.width /1.5,
+                            // color: Colors.pink,
+                            child: TextField(
+                              controller: _username,
+                              decoration: InputDecoration(
+                                  labelText: 'Username',
+                                  hintText: 'my username'
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 10,),
-                        Container(
-                          height: MediaQuery.of(context).size.height /8,
-                          width: MediaQuery.of(context).size.width /1.5,
-                          // color: Colors.pink,
-                          child: TextField(
-                            controller: _password,
-                            obscureText: true,
-                            decoration: InputDecoration(
-                                labelText: 'Password',
-                                hintText: ''
+                          SizedBox(height: 10,),
+                          Container(
+                            height: MediaQuery.of(context).size.height /8,
+                            width: MediaQuery.of(context).size.width /1.5,
+                            // color: Colors.pink,
+                            child: TextField(
+                              controller: _password,
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                  labelText: 'Password',
+                                  hintText: ''
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: 20,),
-                        GestureDetector(
-                          onTap: (){
-                            login(_username.text.toString(),_password.text.toString());
-                          },
-                          child: Container(
-                            height: MediaQuery.of(context).size.height /9,
-                            width: MediaQuery.of(context).size.width /2,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.pink[700],
-                            ),
-                            child: Center(
-                              child: Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 24
+                          SizedBox(height: 20,),
+
+                          GestureDetector(
+                            onTap: (){
+                              isLoading = true;
+                              bool isMatched = false;
+                              // login(_username.text.toString(),_password.text.toString());
+                              loginApiCall();
+                              for(int i =0; i < logindata.length; i++){
+                                var uname = logindata[i]['username'].toString();
+                                var pass = logindata[i]['password1'].toString();
+                                if(uname == _username.text.toString() && pass == _password.text.toString()){
+                                  isLoading = false;
+                                  isMatched = true;
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text("Loged In Successful!",style: TextStyle(color: Colors.green)),
+                                        duration: Duration(seconds: 2),
+                                        action: SnackBarAction(
+                                          label: "Undo",
+                                          textColor: Colors.white,
+                                          onPressed: (){
+                                            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                          },
+                                        ),
+                                      )
+                                  );
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => HomePage())
+                                  );
+                                   print(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::ok");
+                                   break;
+                                }
+
+                              }
+                              if(!isMatched){
+                                isLoading = false;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text("username password incorrect!",style: TextStyle(color: Colors.red)),
+                                      duration: Duration(seconds: 2),
+                                      action: SnackBarAction(
+                                        label: "Undo",
+                                        textColor: Colors.white,
+                                        onPressed: (){
+                                          ScaffoldMessenger.of(context).hideCurrentSnackBar();
+                                        },
+                                      ),
+                                    )
+                                );
+                                print(":::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::Not ok");
+                              }
+                            },
+                            child: Container(
+                              height: MediaQuery.of(context).size.height /9,
+                              width: MediaQuery.of(context).size.width /2,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: Colors.pink[700],
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Login",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 24
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                        TextButton(onPressed: ()=> exit(0), child: Text("ToExit-->")),
-                        Padding(
-                          padding: EdgeInsets.only(bottom: 0.0,top: 1.0),
-                          child: Container(
-                            height: 200,
-                            // color: Colors.blueAccent,
-                            child: Center(
-                              child: Image.asset("assets/home_logo-removebg-preview.png",),
+                          TextButton(onPressed: ()=> exit(0), child: Text("ToExit-->")),
+                          Padding(
+                            padding: EdgeInsets.only(bottom: 0.0,top: 1.0),
+                            child: Container(
+                              height: 200,
+                              // color: Colors.blueAccent,
+                              child: Center(
+                                child: Image.asset("assets/home_logo-removebg-preview.png",),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
+                  isLoading?CircularProgressIndicator(
+
+                  ):Container()
+          ]
               ),
             ],
           ),
