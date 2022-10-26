@@ -2,7 +2,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:chat/home_screen.dart';
 import 'package:chat/all_api.dart';
-
+import 'package:http/http.dart';
+import 'dart:convert';
+import 'package:shared_preferences/shared_preferences.dart';
+//https://nurnobi.pythonanywhere.com/api/registered_user/
 
 void main() {
   runApp(MyApp());
@@ -29,6 +32,29 @@ class LoginPage extends StatefulWidget{
   State<LoginPage> createState()=> _LoginPageState();
 }
 class _LoginPageState extends State<LoginPage>{
+  TextEditingController _username = TextEditingController();
+  TextEditingController _password = TextEditingController();
+
+  void login(username,password) {
+    if(username == "admin" && password == "admin"){
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Loged In Successful!",style: TextStyle(color: Colors.green)))
+      );
+      Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => HomePage())
+      );
+    } else if (username == "" && password ==""){
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("requried username and Password!",style: TextStyle(color: Colors.yellowAccent),))
+      );
+    } else{
+      print("::::::::::::::::::::::::::::::::::::::::::::::::::not ok");
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Invalid username or Password!",style: TextStyle(color: Colors.red),))
+      );
+    }
+  }
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -80,6 +106,7 @@ class _LoginPageState extends State<LoginPage>{
                           width: MediaQuery.of(context).size.width /1.5,
                           // color: Colors.pink,
                           child: TextField(
+                            controller: _username,
                             decoration: InputDecoration(
                                 labelText: 'Username',
                                 hintText: 'my username'
@@ -92,6 +119,7 @@ class _LoginPageState extends State<LoginPage>{
                           width: MediaQuery.of(context).size.width /1.5,
                           // color: Colors.pink,
                           child: TextField(
+                            controller: _password,
                             obscureText: true,
                             decoration: InputDecoration(
                                 labelText: 'Password',
@@ -102,10 +130,7 @@ class _LoginPageState extends State<LoginPage>{
                         SizedBox(height: 20,),
                         GestureDetector(
                           onTap: (){
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => HomePage())
-                            );
+                            login(_username.text.toString(),_password.text.toString());
                           },
                           child: Container(
                             height: MediaQuery.of(context).size.height /9,
