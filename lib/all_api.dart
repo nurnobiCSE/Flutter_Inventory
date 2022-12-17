@@ -7,15 +7,18 @@ var url = "https://nurnobi.pythonanywhere.com/api/productadd/";
 var userurl = "https://nurnobi.pythonanywhere.com/api/registered_user/";
 var returnurl = "https://nurnobi.pythonanywhere.com/api/returnproduct/";
 var loginurl = "https://nurnobi.pythonanywhere.com/api/login/";
+var saleurl = "https://nurnobi.pythonanywhere.com/api/saleproduct/";
 
 var stringResponse;
 var stringuserResponse;
 var returnResponse;
 var loginResponse;
+var salesResponse;
 List data = [];
 List userdata = [];
 List returndata = [];
 List logindata = [];
+List saledata = [];
 var data_loading = false;
 
 Future productAddApiCall()async{
@@ -64,6 +67,17 @@ Future returnApiCall()async{
     returndata = toJson;
     print("................,,,,,,,,,,,,,,");
     print(returndata);
+  }
+}
+Future saleApiCall()async{
+  http.Response response;
+  response = await http.get(Uri.parse(saleurl));
+  if(response.statusCode ==200){
+    salesResponse = response.body;
+    var toJson = json.decode(response.body);
+    saledata = toJson;
+    print("................,,,,,,,,,,,,,,");
+    print(saledata);
   }
 }
 

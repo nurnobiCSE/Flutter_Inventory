@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:chat/splash_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:chat/home_screen.dart';
 import 'package:chat/all_api.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -14,6 +16,9 @@ import 'package:chat/all_api.dart';
 //https://nurnobi.pythonanywhere.com/api/registered_user/
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(statusBarColor: Colors.transparent)
+  );
   runApp(MyApp());
 }
 
@@ -28,8 +33,9 @@ class _MyAppState extends State<MyApp> {
     // TODO: implement build
     return MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: LoginPage(),
-        theme: ThemeData(scaffoldBackgroundColor:  const Color(0xFFEFEFEF)),
+        home: SplashScreen(),
+        // LoginPage(),
+        theme: ThemeData(scaffoldBackgroundColor:  const Color(0xFFEFEFEF),primarySwatch: Colors.deepOrange),
     );
   }
 }
@@ -41,26 +47,7 @@ class _LoginPageState extends State<LoginPage>{
   TextEditingController _username = TextEditingController();
   TextEditingController _password = TextEditingController();
   bool isLoading = false;
-  void login(username,password) {
-    if(username == "admin" && password == "admin"){
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Loged In Successful!",style: TextStyle(color: Colors.green)))
-      );
-      Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => HomePage())
-      );
-    } else if (username == "" && password ==""){
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("requried username and Password!",style: TextStyle(color: Colors.yellowAccent),))
-      );
-    } else{
-      print("::::::::::::::::::::::::::::::::::::::::::::::::::not ok");
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("Invalid username or Password!",style: TextStyle(color: Colors.red),))
-      );
-    }
-  }
+
   //code for internet checking :
   late StreamSubscription subscription;
   var isDeviceConnected = false;
@@ -117,7 +104,7 @@ class _LoginPageState extends State<LoginPage>{
                 children: [
                 Column(
                   children: [
-                    Text("\nLogin Page\n",
+                    Text("\nLogin To IMS\n",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 35,

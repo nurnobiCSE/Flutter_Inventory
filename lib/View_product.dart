@@ -33,7 +33,7 @@ class _ViewPageState extends State<ViewPage> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.pink,
-          title: Text("View Product List"),
+          title: Text("View Product List ("+data.length.toString()+")"),
           centerTitle: true,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(

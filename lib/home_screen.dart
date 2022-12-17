@@ -3,6 +3,7 @@ import 'package:chat/user_stuff.dart';
 import 'package:chat/add_sale.dart';
 import 'package:chat/main.dart';
 import 'package:chat/return_product.dart';
+import 'package:chat/viewsale.dart';
 import 'package:flutter/material.dart';
 import 'dart:io';
 class HomePage extends StatefulWidget {
@@ -43,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                     )
                   ],
                 ),
-                height: MediaQuery.of(context).size.height / 4.5,
+                height: MediaQuery.of(context).size.height / 4.8,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                     color: Colors.amber,
@@ -219,7 +220,51 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              SizedBox(height:30.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(width: 10.0,),
+                  Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color:Colors.white
+                    ),
+                    child: Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RawMaterialButton(
+                              onPressed: (){
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => ViewSalePage())
+                                );
+                              },
+                              splashColor: Colors.blueAccent,
+                              elevation: 2,
+                              fillColor: Colors.orange,
+                              child: Icon(
+                                Icons.attach_money_sharp,
+                                color: Colors.white,
+                                size: 25.0,
+                              ),
+                              padding: EdgeInsets.all(5.0),
+                              shape: CircleBorder(),
+                            ),
+                            SizedBox(height: 2.0,),
+                            Text("View Sales")
+                          ],
+                        )
+                    ),
+                    height: MediaQuery.of(context).size.height/8,
+                    width: MediaQuery.of(context).size.width /1.3,
+
+                    margin:EdgeInsets.only(
+                      top: 5.0,
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height:10.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

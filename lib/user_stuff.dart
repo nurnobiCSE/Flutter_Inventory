@@ -32,8 +32,8 @@ class _AddPageState extends State<AddPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.deepPurple,
-          title: Text("List user stuff"),
+          backgroundColor: Colors.teal,
+          title: Text("List user stuff ("+userdata.length.toString()+")"),
           centerTitle: true,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
@@ -56,7 +56,7 @@ class _AddPageState extends State<AddPage> {
                               topLeft:Radius.circular(50.0),
                               bottomRight: Radius.circular(50.0)
                           )),
-                          tileColor: Colors.deepPurple,
+                          tileColor: Colors.teal,
                           title: Text("User Id : "+userdata[index]['username'].toString() ,style: TextStyle(color: Colors.white,fontSize: 20),),
                           subtitle: Text("User Type : "+userdata[index]['user_type'].toString(),style: TextStyle(color: Colors.white,)),
                           leading: Icon(Icons.manage_accounts,color: Colors.white),

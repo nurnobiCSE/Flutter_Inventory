@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:http/http.dart' as http;
+import 'package:chat/all_api.dart';
 
 class SalePage extends StatefulWidget {
 
@@ -144,6 +145,7 @@ class _SalePageState extends State<SalePage> {
               ),
               Padding(padding: EdgeInsets.only(bottom: 20.0)),
               TextFormField(
+                readOnly: true,
                 controller: _total,
                 decoration: InputDecoration(
                     border: OutlineInputBorder(),
@@ -160,13 +162,13 @@ class _SalePageState extends State<SalePage> {
                     _total.text =total.toString();
                 },
                 child: Container(
-                  height: 25.0,
-                  width: 90,
+                  height: 35.0,
+                  width: 140,
                   decoration: BoxDecoration(
-                    color: Colors.blueGrey,
+                    color: Colors.black,
                     borderRadius: BorderRadius.circular(30)
                   ),
-                  child: Center(child: Text("GetTotal",style: TextStyle(color:Colors.white),))
+                  child: Center(child: Text("GetTotal price",style: TextStyle(color:Colors.orange),))
                 ),
 
               ),
